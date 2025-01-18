@@ -19,6 +19,24 @@ git clone https://modelscope.cn/models/LLM-Research/Meta-Llama-3.1-8B joy-captio
 cp -r joy-caption-pre-alpha/Meta-Llama-3.1-8B joy-caption-alpha-two/Meta-Llama-3.1-8B
 ```
 
+- svjack/joy-caption-pre-alpha
+```bash
+cd joy-caption-pre-alpha
+python run_caption_ds.py "svjack/Genshin-Impact-Couple-with-Tags-IID-Gender-Only-Two" --caption_column="joy-caption" --output_path="gen_couple_cap_dir"
+```
+
+- svjack/joy-caption-alpha-two
+```bash
+cd joy-caption-alpha-two
+python caption_generator_name_ds_save_interval.py "svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender" \
+    --caption_column="joy-caption" \
+    --output_path="gen_single_cap_dir" \
+    --caption_type="Descriptive" \
+    --caption_length="long" \
+    --extra_options 0 1 8 \
+    --save_interval 3000
+```
+
 ## What is JoyCaption?
 
 JoyCaption is an image captioning Visual Language Model (VLM) being built from the ground up as a free, open, and uncensored model for the community to use in training Diffusion models.
