@@ -6,6 +6,15 @@ JoyCaption is an open, free, and uncensored captioning Visual Language Model (VL
 
 ![This image is a digital meme featuring a photograph of a golden retriever walking on a wet asphalt road. The dog, with a light golden coat, wears a red collar and leash, and is captured mid-stride, with its tongue out. The background is blurred, emphasizing the dog. Above the dog, in bold black text on a white background, it reads, "Self-supervised Learning." The overall tone is humorous, combining the concept of self-supervised learning with the playful image of the dog.](dog.jpg)
 
+```bash
+sudo apt-get update && sudo apt-get install git-lfs cbm ffmpeg
+
+git clone https://huggingface.co/spaces/svjack/joy-caption-pre-alpha
+pip install -r joy-caption-pre-alpha/requirements.txt
+git clone https://huggingface.co/spaces/svjack/joy-caption-alpha-two
+pip install -r joy-caption-alpha-two/requirements.txt
+pip install -U datasets huggingface_hub
+```
 
 ## What is JoyCaption?
 
