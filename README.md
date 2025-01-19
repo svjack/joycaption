@@ -92,6 +92,9 @@ ds = load_dataset("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender"
 # 加载 CSV 文件
 df = pd.read_csv("Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption.csv")
 
+#### Dataset.from_pandas(df).push_to_hub("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption-18000-only-Caption")
+Dataset.from_pandas(df).push_to_hub("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption-only-Caption")
+
 # 将 df 转换为字典，方便快速查找
 joy_caption_dict = dict(zip(df["im_name"], df["joy-caption"]))
 
