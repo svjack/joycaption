@@ -23,7 +23,8 @@ cp -r joy-caption-pre-alpha/Meta-Llama-3.1-8B joy-caption-alpha-two/Meta-Llama-3
 ```bash
 cd joy-caption-pre-alpha
 python run_caption_ds.py "svjack/Genshin-Impact-Couple-with-Tags-IID-Gender-Only-Two" --caption_column="joy-caption" --output_path="gen_couple_cap_dir"
-
+```
+```python
 from datasets import load_from_disk
 ds = load_from_disk("gen_couple_cap_dir/")
 ds.remove_columns(["image"]).to_pandas()[["im_name", "joy-caption"]].to_csv("Genshin-Impact-Couple-with-Tags-IID-Gender-Only-Two-Joy-Caption.csv", index = False)
