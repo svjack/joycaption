@@ -71,6 +71,47 @@ python caption_generator_name_ds_save_interval.py "svjack/Genshin-Impact-Portrai
     --save_interval 3000
 ```
 
+```python
+from datasets import load_from_disk
+ds = load_from_disk("gen_single_cap_dir/")
+ds.remove_columns(["image"]).to_pandas()[["im_name", "joy-caption"]].to_csv("Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption.csv", index = False)
+
+# !pip install datasets huggingface_hub
+# !huggingface-cli login
+
+from datasets import load_dataset
+import pandas as pd
+
+# 加载数据集
+ds = load_dataset("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender")
+
+# !du -ah --max-depth=1 ~/.cache/huggingface/hub | sort -rh | head -n 10
+# !du -ah --max-depth=1 ~/.cache/huggingface/datasets | sort -rh | head -n 10
+# !rm -rf ~/.cache/huggingface/hub
+
+# 加载 CSV 文件
+df = pd.read_csv("Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption.csv")
+
+# 将 df 转换为字典，方便快速查找
+joy_caption_dict = dict(zip(df["im_name"], df["joy-caption"]))
+
+# 定义一个函数，将 joy-caption 添加到 ds 中
+def add_joy_caption(example):
+    im_name = example["im_name"]
+    example["joy-caption"] = joy_caption_dict.get(im_name, None)
+    return example
+
+# 应用函数到数据集
+dss = ds.map(add_joy_caption, num_proc=6)
+
+# 过滤掉 joy-caption 为 None 的行
+dss = dss.filter(lambda example: example["joy-caption"] is not None, num_proc=6)
+dss
+
+### dss.push_to_hub("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption-18000")
+dss.push_to_hub("svjack/Genshin-Impact-Portrait-with-Tags-Filtered-IID-Gender-Joy-Caption")
+```
+
 ## What is JoyCaption?
 
 JoyCaption is an image captioning Visual Language Model (VLM) being built from the ground up as a free, open, and uncensored model for the community to use in training Diffusion models.
