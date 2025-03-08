@@ -14,6 +14,7 @@ pip install -r joy-caption-pre-alpha/requirements.txt
 git clone https://huggingface.co/spaces/svjack/joy-caption-alpha-two
 pip install -r joy-caption-alpha-two/requirements.txt
 pip install -U datasets huggingface_hub
+pip install protobuf
 
 git clone https://modelscope.cn/models/LLM-Research/Meta-Llama-3.1-8B joy-caption-pre-alpha/Meta-Llama-3.1-8B
 cp -r joy-caption-pre-alpha/Meta-Llama-3.1-8B joy-caption-alpha-two/Meta-Llama-3.1-8B
